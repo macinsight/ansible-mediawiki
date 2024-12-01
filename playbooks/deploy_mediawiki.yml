@@ -1,0 +1,6 @@
+---
+- name: Deploy MediaWiki with backup functionality
+  hosts: all
+  become: yes
+  roles:
+    - role: deployment

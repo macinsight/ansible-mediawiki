@@ -3,4 +3,4 @@
 # defaults file for deployment
 mediawiki_version: "1.41.0"
 filetype: "tar.gz"
-
+mediawiki_destination: "/opt/"
