@@ -1,0 +1,2 @@
+[mediawiki_servers]
+81.163.193.90 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/b1systems

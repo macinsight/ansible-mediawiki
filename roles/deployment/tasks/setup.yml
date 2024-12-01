@@ -3,9 +3,27 @@
 - name: Download mediawiki tarball
   ansible.builtin.get_url:
     url: "{{ mediawiki_url }}"
-    dest: "{{ mediawiki_destination }}"
+    dest: "{{ mediawiki_installdir }}"
+  register: mediawiki_tarball
 
 - name: Download MediaWiki checksum file
   ansible.builtin.get_url:
     url: "{{ mediawiki_url }}.sig"
-    dest: "{{ mediawiki_destination }}"
+    dest: "{{ mediawiki_installdir }}"
+  register: mediawiki_signature_file
+
+- name: Download GPG keys
+  ansible.builtin.get_url:
+    url: 'https://www.mediawiki.org/keys/keys.txt'
+    dest: "{{ mediawiki_installdir }}"
+  register: mediawiki_gpg_keys_file
+
+- name: Import GPG keys
+  ansible.builtin.command:
+    cmd: "gpg --import {{ mediawiki_gpg_keys_file.dest }}"
+
+- name: Verify GPG keys
+  ansible.builtin.command:
+    cmd: "gpg --verify {{ mediawiki_signature_file.dest }}"
+  register: gpg_verification_result
+  failed_when: "'Good signature' not in gpg_verification_result.stderr"

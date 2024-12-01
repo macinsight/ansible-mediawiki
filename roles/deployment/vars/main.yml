@@ -2,4 +2,4 @@
 ---
 # vars file for deployment
 
-mediawiki_url: "https://releases.wikimedia.org/mediawiki/{{ mediawiki_version }}/mediawiki-{{ mediawiki_version }}.{{ filetype }}"
+mediawiki_url: "https://releases.wikimedia.org/mediawiki/{{ mediawiki_version.split('.')[0] + '.' + mediawiki_version.split('.')[1] }}/mediawiki-{{ mediawiki_version }}.{{ filetype }}"

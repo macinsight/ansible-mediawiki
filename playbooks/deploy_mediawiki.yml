@@ -3,4 +3,4 @@
   hosts: all
   become: yes
   roles:
-    - role: deployment
+  - role: deployment
