@@ -1,0 +1,11 @@
+---
+# macinsight.mediawiki.setup.yml
+- name: Download mediawiki tarball
+  ansible.builtin.get_url:
+    url: "{{ mediawiki_url }}"
+    dest: "{{ mediawiki_destination }}"
+
+- name: Download MediaWiki checksum file
+  ansible.builtin.get_url:
+    url: "{{ mediawiki_url }}.sig"
+    dest: "{{ mediawiki_destination }}"
